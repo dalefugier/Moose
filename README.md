@@ -15,6 +15,7 @@ Building Sample
 To build the sample, you are going to need:
 
 * Rhinoceros 5 (http://www.rhino3d.com)
+* Rhinoceros 5 C++ SDK (http://wiki.mcneel.com/developer/sdksamples/rhino5)
 * Microsoft Visual C++ 2010
 * Microsoft Visual C# 2010
 
