@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Rhino.Geometry;
 
 namespace MooseCommon
 {
@@ -26,9 +24,17 @@ namespace MooseCommon
     /// <summary>
     /// Adds a point to the Rhino document
     /// </summary>
-    public static Guid AddPoint(Rhino.Geometry.Point3d point)
+    public static Guid AddPoint(Point3d point)
     {
       return UnsafeNativeMethods.MooseAddPoint(point);
+    }
+
+    /// <summary>
+    /// Example function
+    /// </summary>
+    public static int ExampleFunction(Brep brep, int x, int y, out Point3d[] points, out Line[] lines)
+    {
+      return UnsafeNativeMethods.MooseFunction(brep, x, y, out points, out lines);
     }
   }
 }

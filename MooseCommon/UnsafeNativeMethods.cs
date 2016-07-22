@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using Rhino;
 using Rhino.Geometry;
+using Rhino.Runtime;
 
 namespace MooseCommon
 {
@@ -45,6 +42,48 @@ namespace MooseCommon
       else
         return UnsafeNativeMethods32.MooseAddPoint(point);
     }
+
+    /// <summary>
+    /// Calls a more complicated, exported function
+    /// </summary>
+    public static int MooseFunction(Brep brep, int x, int y, out Point3d[] points, out Line[] lines)
+    {
+      if (null == brep)
+        throw new ArgumentNullException("brep");
+
+      // Get the native ON_Brep pointer
+      var const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
+
+      // Creates a ON_3dPointArray wrapper class instance
+      var points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d();
+      // Get a non-const point to this class
+      var ptr_points_array = points_array.NonConstPointer();
+
+      // Creates a ON_SimpleArray<ON_Line> wrapper class instance
+      var lines_array = new Rhino.Runtime.InteropWrappers.SimpleArrayLine();
+      // Get a non-const point to this class
+      var ptr_lines_array = lines_array.NonConstPointer();
+
+      var rc = Environment.Is64BitProcess ?
+        UnsafeNativeMethods64.MooseFunction(const_ptr_brep, x, y, ptr_points_array, ptr_lines_array) :
+        UnsafeNativeMethods32.MooseFunction(const_ptr_brep, x, y, ptr_points_array, ptr_lines_array);
+
+      if (rc > 0)
+      {
+        points = points_array.ToArray();
+        lines = lines_array.ToArray();
+      }
+      else
+      {
+        points = new Point3d[0];
+        lines = new Line[0];
+      }
+
+      points_array.Dispose();
+      lines_array.Dispose();
+
+      return rc;
+    }
   }
 
   /// <summary>
@@ -60,6 +99,9 @@ namespace MooseCommon
 
     [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
     internal static extern Guid MooseAddPoint(Point3d point);
+
+    [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int MooseFunction(IntPtr pConstBrep, int x, int y, IntPtr pPoints, IntPtr pLines);
   }
 
   /// <summary>
@@ -75,5 +117,8 @@ namespace MooseCommon
 
     [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
     internal static extern Guid MooseAddPoint(Point3d point);
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int MooseFunction(IntPtr pConstBrep, int x, int y, IntPtr pPoints, IntPtr pLines);
   }
 }

@@ -57,3 +57,6 @@ double MooseSum( double a, double b );
 
 MOOSECORELIB_C_FUNCTION
 ON_UUID MooseAddPoint( ON_3DPOINT_STRUCT point );
+
+MOOSECORELIB_C_FUNCTION
+int MooseFunction(const ON_Brep* pConstBrep, int x, int y, ON_3dPointArray* pPoints, ON_SimpleArray<ON_Line>* pLines);
