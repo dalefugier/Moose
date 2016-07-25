@@ -89,3 +89,30 @@ int MooseFunction(const ON_Brep* pConstBrep, int x, int y, ON_3dPointArray* pPoi
 
   return 0;
 }
+
+int MooseFunction2(const ON_Brep* pConstBrep, int x, int y, int point_count, /*ARRAY*/const ON_3dPoint* pConstPoints, ON_SimpleArray<ON_Line>* pLines)
+{  
+  if (pConstBrep && pConstPoints && pLines)
+  {
+    ON_3dPointArray points(point_count);
+    points.Append(point_count, pConstPoints);
+    // TODO: Do someting with points
+
+    // Append some sample data...
+
+    ON_3dPoint p0(0, 0, 0);
+    ON_3dPoint p1(5, 0, 0);
+    ON_3dPoint p2(5, 5, 0);
+    ON_3dPoint p3(0, 5, 0);
+
+    pLines->Append(ON_Line(p0, p1));
+    pLines->Append(ON_Line(p1, p2));
+    pLines->Append(ON_Line(p2, p3));
+    pLines->Append(ON_Line(p3, p0));
+
+    return pLines->Count();
+  }
+
+  return 0;
+
+}

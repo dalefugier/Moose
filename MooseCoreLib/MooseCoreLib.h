@@ -50,13 +50,16 @@ struct ON_3DPOINT_STRUCT
 
 
 MOOSECORELIB_C_FUNCTION
-void MoosePrint( const wchar_t* str );
+void MoosePrint(const wchar_t* str);
 
 MOOSECORELIB_C_FUNCTION
-double MooseSum( double a, double b );
+double MooseSum(double a, double b);
 
 MOOSECORELIB_C_FUNCTION
-ON_UUID MooseAddPoint( ON_3DPOINT_STRUCT point );
+ON_UUID MooseAddPoint(ON_3DPOINT_STRUCT point);
 
 MOOSECORELIB_C_FUNCTION
 int MooseFunction(const ON_Brep* pConstBrep, int x, int y, ON_3dPointArray* pPoints, ON_SimpleArray<ON_Line>* pLines);
+
+MOOSECORELIB_C_FUNCTION
+int MooseFunction2(const ON_Brep* pConstBrep, int x, int y, int point_count, /*ARRAY*/const ON_3dPoint* pConstPoints, ON_SimpleArray<ON_Line>* pLines);
