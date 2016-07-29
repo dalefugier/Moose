@@ -5,10 +5,11 @@ Moose is a Rhino 5 solution that demonstrates how to share a common C++ library 
 
 The solution contains the following projects:
 
-1.) Moose        - Rhino 5 C++ plug-in
-2.) MooseCoreLib - Rhino 5-dependent C++ DLL that is used by Moose.
-3.) MooseCommon  - .NET assembly that exposes the functions exported from MooseCoreLib.
-4.) MooseNet     - RhinoCommon plug-in that references MooseCommon.
+* Moose        - Rhino 5 C++ plug-in
+* MooseCoreLib - Rhino 5-dependent C++ DLL that is used by Moose.
+* MooseCommon  - .NET assembly that exposes the functions exported from MooseCoreLib.
+* MooseNet     - RhinoCommon plug-in that references MooseCommon.
+* MooseGh      - Grasshopper component that references MooseCommon.
 
 Building Sample
 --------------------
@@ -21,7 +22,7 @@ To build the sample, you are going to need:
 
 Legal Stuff
 -----------
-Copyright © 2013 Robert McNeel & Associates. All Rights Reserved.
+Copyright Â© 2013 Robert McNeel & Associates. All Rights Reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
