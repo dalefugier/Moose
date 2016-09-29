@@ -36,5 +36,13 @@ namespace MooseCommon
     {
       return UnsafeNativeMethods.MooseFunction(brep, x, y, out points, out lines);
     }
+
+    /// <summary>
+    /// Another example function
+    /// </summary>
+    public static Polyline[] ExampleGetPolylines()
+    {
+      return UnsafeNativeMethods.MooseGetPolylines();
+    }
   }
 }

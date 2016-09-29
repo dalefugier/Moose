@@ -114,6 +114,65 @@ namespace MooseCommon
 
       return rc;
     }
+
+    /// <summary>
+    /// Demonstrates using a custom inteop helper class
+    /// </summary>
+    /// <returns></returns>
+    public static Polyline[] MooseGetPolylines()
+    {
+      var array = new SimpleArrayPolyline();
+      var ptr_array = array.NonConstPointer();
+
+      int count = Environment.Is64BitProcess ?
+        UnsafeNativeMethods64.MoooseGetPolylines(ptr_array) :
+        UnsafeNativeMethods32.MoooseGetPolylines(ptr_array);
+
+      if (count == 0)
+      {
+        array.Dispose();
+        return new Polyline[0];
+      }
+
+      var list = new List<Polyline>(count);
+      for (var i = 0; i < count; i++)
+        list.Add(array.Get(i));
+
+      array.Dispose();
+
+      return list.ToArray();
+    }
+
+
+    #region SimpleArrayPolyline helpers
+    public static IntPtr ON_PolylineArray_New()
+    {
+      return Environment.Is64BitProcess ?
+        UnsafeNativeMethods64.ON_PolylineArray_New() :
+        UnsafeNativeMethods32.ON_PolylineArray_New();
+    }
+
+    public static int ON_PolylineArray_Count(IntPtr ptrArray)
+    {
+      return Environment.Is64BitProcess ?
+        UnsafeNativeMethods64.ON_PolylineArray_Count(ptrArray) :
+        UnsafeNativeMethods32.ON_PolylineArray_Count(ptrArray);
+    }
+
+    public static int ON_PolylineArray_Get(IntPtr ptrArray, int index, IntPtr ptrPoints)
+    {
+      return Environment.Is64BitProcess ?
+        UnsafeNativeMethods64.ON_PolylineArray_Get(ptrArray, index, ptrPoints) :
+        UnsafeNativeMethods32.ON_PolylineArray_Get(ptrArray, index, ptrPoints);
+    }
+
+    public static int ON_PolylineArray_Delete(IntPtr ptrArray)
+    {
+      return Environment.Is64BitProcess ?
+        UnsafeNativeMethods64.ON_PolylineArray_Delete(ptrArray) :
+        UnsafeNativeMethods32.ON_PolylineArray_Delete(ptrArray);
+    }
+    #endregion
   }
 
   /// <summary>
@@ -135,6 +194,21 @@ namespace MooseCommon
 
     [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
     internal static extern int MooseFunction2(IntPtr pConstBrep, int x, int y, int pointCount, Point3d[] pPoints, IntPtr pLines);
+
+    [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int MoooseGetPolylines(IntPtr pArray);
+
+    [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern IntPtr ON_PolylineArray_New();
+
+    [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int ON_PolylineArray_Count(IntPtr pArray);
+
+    [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int ON_PolylineArray_Get(IntPtr pArray, int index, IntPtr pPoints);
+
+    [DllImport("MooseCoreLib_x64.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int ON_PolylineArray_Delete(IntPtr pArray);
   }
 
   /// <summary>
@@ -156,5 +230,20 @@ namespace MooseCommon
 
     [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
     internal static extern int MooseFunction2(IntPtr pConstBrep, int x, int y, int pointCount, Point3d[] pPoints, IntPtr pLines);
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int MoooseGetPolylines(IntPtr pArray);
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern IntPtr ON_PolylineArray_New();
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int ON_PolylineArray_Count(IntPtr pArray);
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int ON_PolylineArray_Get(IntPtr pArray, int index, IntPtr pPoints);
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int ON_PolylineArray_Delete(IntPtr pArray);
   }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using Rhino;
+﻿using Rhino;
 using Rhino.Commands;
 using Rhino.Geometry;
-using Rhino.Input.Custom;
 
 namespace MooseNet
 {
@@ -35,6 +33,7 @@ namespace MooseNet
       //  MooseCommon.Utility.Print(str);
       //}
 
+      
       var sphere = new Sphere(Point3d.Origin, 5);
 
       var brep = sphere.ToBrep();
@@ -51,6 +50,13 @@ namespace MooseNet
           doc.Objects.AddLine(l);
         doc.Views.Redraw();
       }
+
+
+      var polylines = MooseCommon.Utility.ExampleGetPolylines();
+      foreach (var pline in polylines)
+        doc.Objects.AddPolyline(pline);
+      doc.Views.Redraw();
+
 
       return Result.Success;
     }
