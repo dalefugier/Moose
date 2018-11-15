@@ -1,6 +1,0 @@
-; MooseCoreLib.def : Declares the module parameters for the DLL.
-
-; LIBRARY      "MooseCoreLib"
-
-EXPORTS
-    ; Explicit exports can go here
