@@ -1,28 +1,28 @@
 Moose
 =====
 
-Moose is a Rhino 5 solution that demonstrates how to share a common C++ library between a Rhino C++ plug-in and a RhinoCommon .NET plug-in written in C#.
+Moose is a Rhino 6 solution that demonstrates how to share a common C++ library between a [Rhino C++](https://developer.rhino3d.com/guides/cpp/) plug-in, a [RhinoCommon](https://developer.rhino3d.com/guides/rhinocommon/) plug-in written in C#, and a [Grasshopper](https://developer.rhino3d.com/guides/grasshopper/) component written in C#.
 
 The solution contains the following projects:
 
-* MooseCoreLib - Rhino 5-dependent C++ assembly (DLL).
-* MooseCommon  - .NET assembly that exposes the functions exported from MooseCoreLib.
-* Moose        - Rhino 5 C++ plug-in that references MooseCoreLib.
-* MooseNet     - RhinoCommon plug-in that references MooseCommon.
-* MooseGh      - Grasshopper component that references MooseCommon.
+* **MooseCoreLib** — Rhino dependent C++ assembly (DLL).
+* **MooseCommon** — .NET assembly that exposes the functions exported from MooseCoreLib.
+* **Moose** — Rhino C++ plug-in that references MooseCoreLib.
+* **MooseNet** — RhinoCommon plug-in that references MooseCommon.
+* **MooseGh** — Grasshopper component that references MooseCommon.
 
 Building Sample
 --------------------
 To build the sample, you are going to need:
 
-* Rhinoceros 5 (http://www.rhino3d.com)
-* Rhinoceros 5 C++ SDK (http://wiki.mcneel.com/developer/sdksamples/rhino5)
-* Microsoft Visual C++ 2010
-* Microsoft Visual C# 2010
+* Rhino 6 (http://www.rhino3d.com)
+* Rhino 6 C/C++ SDK (https://developer.rhino3d.com/)
+* Microsoft Visual C++ 2017
+* Microsoft Visual C# 2017
 
 Legal Stuff
 -----------
-Copyright © 2013 Robert McNeel & Associates. All Rights Reserved.
+Copyright © 2012-18 Robert McNeel & Associates. All Rights Reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
