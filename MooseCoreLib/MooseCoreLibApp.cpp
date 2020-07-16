@@ -47,10 +47,10 @@ BOOL CMooseCoreLibApp::InitInstance()
 {
   // CRITICAL: DO NOT CALL RHINO SDK FUNCTIONS HERE!
   // Only standard MFC DLL instance initialization belongs here. 
-  
+
   CWinApp::InitInstance();
 
-	return TRUE;
+  return TRUE;
 }
 
 int CMooseCoreLibApp::ExitInstance()

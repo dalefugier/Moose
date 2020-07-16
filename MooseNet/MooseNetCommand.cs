@@ -60,13 +60,16 @@ namespace MooseNet
           doc.Objects.AddPoint(p);
         foreach (var l in lines)
           doc.Objects.AddLine(l);
-        doc.Views.Redraw();
       }
-
 
       var polylines = MooseCommon.Utility.ExampleGetPolylines();
       foreach (var pline in polylines)
         doc.Objects.AddPolyline(pline);
+
+      var cylinder_brep = MooseCommon.Utility.ExampleFunction3();
+      if (null != cylinder_brep)
+        doc.Objects.AddBrep(cylinder_brep);
+
       doc.Views.Redraw();
 
       return Result.Success;

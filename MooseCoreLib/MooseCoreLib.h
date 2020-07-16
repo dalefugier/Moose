@@ -29,21 +29,21 @@
 // C++ exports
 
 MOOSECORELIB_CPP_FUNCTION
-void MooseSdkPrint( const wchar_t* str );
+void MooseSdkPrint(const wchar_t* str);
 
 MOOSECORELIB_CPP_FUNCTION
-double MooseSdkSum( double a, double b );
+double MooseSdkSum(double a, double b);
 
 MOOSECORELIB_CPP_FUNCTION
-ON_UUID MooseSdkAddPoint( const ON_3dPoint& point );
+ON_UUID MooseSdkAddPoint(const ON_3dPoint& point);
 
 
 /////////////////////////////////////////////////////////////////////////////
 // .NET Exports
 
 struct ON_3DPOINT_STRUCT
-{ 
-  double val[3]; 
+{
+  double val[3];
 };
 
 
@@ -63,6 +63,8 @@ int MooseFunction(const ON_Brep* pConstBrep, int x, int y, ON_3dPointArray* pPoi
 MOOSECORELIB_C_FUNCTION
 int MooseFunction2(const ON_Brep* pConstBrep, int x, int y, int point_count, /*ARRAY*/const ON_3dPoint* pConstPoints, ON_SimpleArray<ON_Line>* pLines);
 
+MOOSECORELIB_C_FUNCTION
+ON_Brep* MooseFunction3();
 
 MOOSECORELIB_C_FUNCTION
 int MoooseGetPolylines(ON_SimpleArray<ON_Polyline*>* pArray);
@@ -73,7 +75,7 @@ ON_SimpleArray<ON_Polyline*>* ON_PolylineArray_New();
 MOOSECORELIB_C_FUNCTION
 int ON_PolylineArray_Count(ON_SimpleArray<ON_Polyline*>* pArray);
 
-MOOSECORELIB_C_FUNCTION 
+MOOSECORELIB_C_FUNCTION
 int ON_PolylineArray_Get(ON_SimpleArray<ON_Polyline*>* pArray, int index, ON_3dPointArray* pPoints);
 
 MOOSECORELIB_C_FUNCTION

@@ -40,6 +40,12 @@ namespace MooseCommon
     public static extern int MooseFunction2(IntPtr pConstBrep, int x, int y, int pointCount, Point3d[] pPoints, IntPtr pLines);
 
     /// <summary>
+    /// Creates a solid cylinder
+    /// </summary>
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr MooseFunction3();
+
+    /// <summary>
     /// Demonstrates using a custom inteop helper class
     /// </summary>
     [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]

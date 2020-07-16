@@ -97,6 +97,19 @@ namespace MooseCommon
     }
 
     /// <summary>
+    /// Creates a solid cylinder
+    /// </summary>
+    public static Brep ExampleFunction3()
+    {
+      var ptr = UnsafeNativeMethods.MooseFunction3();
+      if (ptr == IntPtr.Zero)
+        return null;
+
+      var geometry = Interop.CreateFromNativePointer(ptr);
+      return geometry as Brep;
+    }
+
+    /// <summary>
     /// Demonstrates using a custom inteop helper class
     /// </summary>
     public static Polyline[] ExampleGetPolylines()
