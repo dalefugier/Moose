@@ -65,6 +65,11 @@ namespace MooseCommon
     [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern int ON_PolylineArray_Delete(IntPtr pArray);
 
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern bool ON_MeshTree_IntersectLine(IntPtr pMesh, ref Line line, IntPtr pPoints);
+
+
     #endregion
   }
 }

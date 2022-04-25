@@ -132,5 +132,32 @@ namespace MooseCommon
 
       return list.ToArray();
     }
+
+    /// <summary>
+    /// Intersects a line with a mesh.
+    /// </summary>
+    /// <param name="mesh">The mesh.</param>
+    /// <param name="line">The line.</param>
+    /// <returns>
+    /// An array of intersection points of successful, 
+    /// or an empty array if not successful.
+    /// </returns>
+    public static Point3d[] MeshLineIntersection(Mesh mesh, Line line)
+    {
+      if (null == mesh)
+        throw new ArgumentNullException(nameof(mesh));
+      if (null == line)
+        throw new ArgumentNullException(nameof(mesh));
+
+      using (var points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d())
+      {
+        var ptr_points = points_array.NonConstPointer();
+        var ptr_const_mesh = Interop.NativeGeometryConstPointer(mesh);
+        var rc = UnsafeNativeMethods.ON_MeshTree_IntersectLine(ptr_const_mesh, ref line, ptr_points);
+        if (rc)
+          return points_array.ToArray();
+      }
+      return new Point3d[0];
+    }
   }
 }

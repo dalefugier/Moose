@@ -30,45 +30,55 @@ namespace MooseNet
 
     protected override Result RunCommand(RhinoDoc doc, RunMode mode)
     {
-      var gp = new GetPoint();
-      gp.SetCommandPrompt("Location of point object");
-      gp.Get();
-      if (gp.CommandResult() != Result.Success)
-        return gp.CommandResult();
+      //var gp = new GetPoint();
+      //gp.SetCommandPrompt("Location of point object");
+      //gp.Get();
+      //if (gp.CommandResult() != Result.Success)
+      //  return gp.CommandResult();
 
-      var point = gp.Point();
+      //var point = gp.Point();
 
-      var point_id = MooseCommon.Utility.AddPoint(point);
-      if (!Equals(point_id, Guid.Empty))
-      {
-        doc.Views.Redraw();
+      //var point_id = MooseCommon.Utility.AddPoint(point);
+      //if (!Equals(point_id, Guid.Empty))
+      //{
+      //  doc.Views.Redraw();
 
-        var uuid_str = point_id.ToString();
-        var str = $"Identifier of point object is \"{uuid_str}\"";
-        MooseCommon.Utility.Print(str);
-      }
+      //  var uuid_str = point_id.ToString();
+      //  var str = $"Identifier of point object is \"{uuid_str}\"";
+      //  MooseCommon.Utility.Print(str);
+      //}
 
 
-      var sphere = new Sphere(Point3d.Origin, 5);
-      var brep = sphere.ToBrep();
-      const int x = 1;
-      const int y = 2;
-      var rc = MooseCommon.Utility.ExampleFunction(brep, x, y, out var points, out var lines);
-      if (rc > 0)
-      {
-        foreach (var p in points)
-          doc.Objects.AddPoint(p);
-        foreach (var l in lines)
-          doc.Objects.AddLine(l);
-      }
+      //var sphere = new Sphere(Point3d.Origin, 5);
+      //var brep = sphere.ToBrep();
+      //const int x = 1;
+      //const int y = 2;
+      //var rc = MooseCommon.Utility.ExampleFunction(brep, x, y, out var points, out var lines);
+      //if (rc > 0)
+      //{
+      //  foreach (var p in points)
+      //    doc.Objects.AddPoint(p);
+      //  foreach (var l in lines)
+      //    doc.Objects.AddLine(l);
+      //}
 
-      var polylines = MooseCommon.Utility.ExampleGetPolylines();
-      foreach (var pline in polylines)
-        doc.Objects.AddPolyline(pline);
+      //var polylines = MooseCommon.Utility.ExampleGetPolylines();
+      //foreach (var pline in polylines)
+      //  doc.Objects.AddPolyline(pline);
 
-      var cylinder_brep = MooseCommon.Utility.ExampleFunction3();
-      if (null != cylinder_brep)
-        doc.Objects.AddBrep(cylinder_brep);
+      //var cylinder_brep = MooseCommon.Utility.ExampleFunction3();
+      //if (null != cylinder_brep)
+      //  doc.Objects.AddBrep(cylinder_brep);
+
+      var sphere = new Sphere(Plane.WorldXY, 5.0);
+      var mesh = Mesh.CreateQuadSphere(sphere, 4);
+
+      var line = new Line(new Point3d(-10, 0, 0), new Point3d(10, 0, 0));
+
+      var points = MooseCommon.Utility.MeshLineIntersection(mesh, line);
+      foreach (var pt in points)
+        doc.Objects.AddPoint(pt);
+
 
       doc.Views.Redraw();
 

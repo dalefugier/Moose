@@ -193,3 +193,31 @@ MOOSECORELIB_C_FUNCTION void ON_PolylineArray_Delete(ON_SimpleArray<ON_Polyline*
     delete pArray;
   }
 }
+
+MOOSECORELIB_C_FUNCTION 
+bool ON_MeshTree_IntersectLine(
+  const ON_Mesh* pMesh, 
+  const ON_Line* pLine, 
+  ON_3dPointArray* pPoints
+)
+{
+  bool rc = false;
+  if (pMesh && pLine && pPoints)
+  {
+    const int points_count = pPoints->Count();
+    const ON_MeshTree* pMeshTree = pMesh->MeshTree(true);
+    if (pMeshTree)
+    {
+      ON_SimpleArray<ON_CMX_EVENT> cmx_events;
+      const int cmx_count = pMeshTree->IntersectLine(*pLine, cmx_events);
+      for (int i = 0; i < cmx_count; i++)
+      {
+        const ON_CMX_EVENT& cmx = cmx_events[i];
+        if (cmx.m_type == ON_CMX_EVENT::cmx_point)
+          pPoints->Append(cmx.m_M[0].m_P);
+      }
+    }
+    rc = pPoints->Count() > points_count;
+  }
+  return rc;
+}
