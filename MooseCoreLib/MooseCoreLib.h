@@ -56,7 +56,6 @@ double MooseSum(double a, double b);
 MOOSECORELIB_C_FUNCTION
 ON_UUID MooseAddPoint(ON_3DPOINT_STRUCT point);
 
-
 MOOSECORELIB_C_FUNCTION
 int MooseFunction(const ON_Brep* pConstBrep, int x, int y, ON_3dPointArray* pPoints, ON_SimpleArray<ON_Line>* pLines);
 
@@ -68,6 +67,7 @@ ON_Brep* MooseFunction3();
 
 MOOSECORELIB_C_FUNCTION
 int MoooseGetPolylines(ON_SimpleArray<ON_Polyline*>* pArray);
+
 
 MOOSECORELIB_C_FUNCTION
 ON_SimpleArray<ON_Polyline*>* ON_PolylineArray_New();
@@ -81,5 +81,12 @@ int ON_PolylineArray_Get(ON_SimpleArray<ON_Polyline*>* pArray, int index, ON_3dP
 MOOSECORELIB_C_FUNCTION
 void ON_PolylineArray_Delete(ON_SimpleArray<ON_Polyline*>* pArray);
 
+
 MOOSECORELIB_C_FUNCTION
 bool ON_MeshTree_IntersectLine(const ON_Mesh* pMesh, const ON_Line* pLine, ON_3dPointArray* pPoints);
+
+MOOSECORELIB_C_FUNCTION
+int ON_Brep_VertexCount(const ON_Brep* pConstBrep);
+
+MOOSECORELIB_C_FUNCTION
+bool ON_NurbsCurve_Inspect(const ON_NurbsCurve* pConstCurve, int* pPointCount, int* pKnotCount);

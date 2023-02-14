@@ -159,5 +159,34 @@ namespace MooseCommon
       }
       return new Point3d[0];
     }
+
+    /// <summary>
+    /// Returns the number of vertices in a Brep
+    /// </summary>
+    public static int BrepVertexCount(Brep brep)
+    {
+      if (null == brep)
+        throw new ArgumentNullException(nameof(brep));
+
+      // Get the native ON_Brep pointer
+      var const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
+      return UnsafeNativeMethods.ON_Brep_VertexCount(const_ptr_brep);
+    }
+
+    /// <summary>
+    /// Inspects a NURBS curve
+    /// </summary>
+    public static bool NurbsCurveInspect(NurbsCurve curve, out int pointCount, out int knotCount)
+    {
+      pointCount = 0;
+      knotCount = 0;
+
+      if (null == curve)
+        throw new ArgumentNullException(nameof(curve));
+
+      // Get the native ON_NurbsCurve pointer
+      var const_ptr_curve = Interop.NativeGeometryConstPointer(curve);
+      return UnsafeNativeMethods.ON_NurbsCurve_Inspect(const_ptr_curve, ref pointCount, ref knotCount);
+    }
   }
 }

@@ -221,3 +221,31 @@ bool ON_MeshTree_IntersectLine(
   }
   return rc;
 }
+
+MOOSECORELIB_C_FUNCTION
+int ON_Brep_VertexCount(
+  const ON_Brep* pConstBrep
+)
+{
+  int count = 0;
+  if (pConstBrep) // always validate...
+    count = pConstBrep->m_V.Count();
+  return count;
+}
+
+MOOSECORELIB_C_FUNCTION
+bool ON_NurbsCurve_Inspect(
+  const ON_NurbsCurve* pConstCurve,
+  int* pPointCount,
+  int* pKnotCount
+)
+{
+  bool rc = false;
+  if (pConstCurve && pPointCount && pKnotCount)
+  {
+    *pPointCount = pConstCurve->CVCount();
+    *pKnotCount = pConstCurve->KnotCount();
+    rc = true;
+  }
+  return rc;
+}
