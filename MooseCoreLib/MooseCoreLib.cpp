@@ -151,6 +151,29 @@ MOOSECORELIB_C_FUNCTION int MoooseGetPolylines(ON_SimpleArray<ON_Polyline*>* pAr
   return rc;
 }
 
+MOOSECORELIB_C_FUNCTION int MooseGetCurves(ON_SimpleArray<ON_Curve*>* pCurveArray)
+{
+  int rc = 0;
+  if (pCurveArray)
+  {
+    ON_LineCurve* pLine0 = new ON_LineCurve(ON_3dPoint(0, 0, 0), ON_3dPoint(10, 0, 0));
+    pCurveArray->Append(pLine0);
+
+    ON_LineCurve* pLine1 = new ON_LineCurve(ON_3dPoint(10, 0, 0), ON_3dPoint(10, 10, 0));
+    pCurveArray->Append(pLine1);
+
+    ON_LineCurve* pLine2 = new ON_LineCurve(ON_3dPoint(10, 10, 0), ON_3dPoint(0, 10, 0));
+    pCurveArray->Append(pLine2);
+
+    ON_LineCurve* pLine3 = new ON_LineCurve(ON_3dPoint(0, 10, 0), ON_3dPoint(0, 0, 0));
+    pCurveArray->Append(pLine3);
+
+    rc = pCurveArray->Count();
+  }
+  return rc;
+}
+
+
 MOOSECORELIB_C_FUNCTION ON_SimpleArray<ON_Polyline*>* ON_PolylineArray_New()
 {
   return new ON_SimpleArray<ON_Polyline*>(0);

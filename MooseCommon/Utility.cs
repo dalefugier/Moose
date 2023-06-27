@@ -134,6 +134,22 @@ namespace MooseCommon
     }
 
     /// <summary>
+    /// Demonstrates getting a bunch of curves from C++.
+    /// </summary>
+    public static Curve[] ExampleGetCurves()
+    {
+      using (var curves = new Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer())
+      {
+        var ptr_curves = curves.NonConstPointer();
+        var count = UnsafeNativeMethods.MooseGetCurves(ptr_curves);
+        var rc = (count == 0)
+          ? new Curve[0]
+          : curves.ToNonConstArray();
+        return rc;
+      }
+    }
+
+    /// <summary>
     /// Intersects a line with a mesh.
     /// </summary>
     /// <param name="mesh">The mesh.</param>

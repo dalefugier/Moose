@@ -68,6 +68,8 @@ ON_Brep* MooseFunction3();
 MOOSECORELIB_C_FUNCTION
 int MoooseGetPolylines(ON_SimpleArray<ON_Polyline*>* pArray);
 
+MOOSECORELIB_C_FUNCTION
+int MooseGetCurves(ON_SimpleArray<ON_Curve*>* pCurveArray);
 
 MOOSECORELIB_C_FUNCTION
 ON_SimpleArray<ON_Polyline*>* ON_PolylineArray_New();
@@ -80,7 +82,6 @@ int ON_PolylineArray_Get(ON_SimpleArray<ON_Polyline*>* pArray, int index, ON_3dP
 
 MOOSECORELIB_C_FUNCTION
 void ON_PolylineArray_Delete(ON_SimpleArray<ON_Polyline*>* pArray);
-
 
 MOOSECORELIB_C_FUNCTION
 bool ON_MeshTree_IntersectLine(const ON_Mesh* pMesh, const ON_Line* pLine, ON_3dPointArray* pPoints);

@@ -28,6 +28,9 @@ namespace MooseNet
     /// </returns>
     public override string EnglishName => "MooseNet";
 
+    /// <summary>
+    /// Runs the command
+    /// </summary>
     protected override Result RunCommand(RhinoDoc doc, RunMode mode)
     {
       //var gp = new GetPoint();
@@ -70,16 +73,18 @@ namespace MooseNet
       //if (null != cylinder_brep)
       //  doc.Objects.AddBrep(cylinder_brep);
 
-      var sphere = new Sphere(Plane.WorldXY, 5.0);
-      var mesh = Mesh.CreateQuadSphere(sphere, 4);
+      //var sphere = new Sphere(Plane.WorldXY, 5.0);
+      //var mesh = Mesh.CreateQuadSphere(sphere, 4);
 
-      var line = new Line(new Point3d(-10, 0, 0), new Point3d(10, 0, 0));
+      //var line = new Line(new Point3d(-10, 0, 0), new Point3d(10, 0, 0));
 
-      var points = MooseCommon.Utility.MeshLineIntersection(mesh, line);
-      foreach (var pt in points)
-        doc.Objects.AddPoint(pt);
+      //var points = MooseCommon.Utility.MeshLineIntersection(mesh, line);
+      //foreach (var pt in points)
+      //  doc.Objects.AddPoint(pt);
 
-
+      var curves = MooseCommon.Utility.ExampleGetCurves();
+      foreach (var curve in curves)
+        doc.Objects.Add(curve);
       doc.Views.Redraw();
 
       return Result.Success;
