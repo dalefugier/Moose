@@ -1,7 +1,6 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Moose", "Moose\Moose.vcxproj", "{0C33D1B7-ED16-48C2-B26F-B1306E13EDA8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -10,14 +9,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Moose", "Moose\Moose.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MooseCoreLib", "MooseCoreLib\MooseCoreLib.vcxproj", "{09198858-C5A4-4E2B-8189-80B63D930296}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MooseCommon", "MooseCommon\MooseCommon.csproj", "{1A7945C3-FCF2-49E0-A439-98C063FA1F71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MooseCommon", "MooseCommon\MooseCommon.csproj", "{1A7945C3-FCF2-49E0-A439-98C063FA1F71}"
 	ProjectSection(ProjectDependencies) = postProject
 		{09198858-C5A4-4E2B-8189-80B63D930296} = {09198858-C5A4-4E2B-8189-80B63D930296}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MooseNet", "MooseNet\MooseNet.csproj", "{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MooseNet", "MooseNet\MooseNet.csproj", "{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MooseGh", "MooseGh\MooseGh.csproj", "{B8C808D4-46A5-4DE5-8C33-761133BE86DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MooseGh", "MooseGh\MooseGh.csproj", "{B8C808D4-46A5-4DE5-8C33-761133BE86DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,16 +32,16 @@ Global
 		{09198858-C5A4-4E2B-8189-80B63D930296}.Debug|x64.Build.0 = Debug|x64
 		{09198858-C5A4-4E2B-8189-80B63D930296}.Release|x64.ActiveCfg = Release|x64
 		{09198858-C5A4-4E2B-8189-80B63D930296}.Release|x64.Build.0 = Release|x64
-		{1A7945C3-FCF2-49E0-A439-98C063FA1F71}.Debug|x64.ActiveCfg = Debug|x64
-		{1A7945C3-FCF2-49E0-A439-98C063FA1F71}.Debug|x64.Build.0 = Debug|x64
+		{1A7945C3-FCF2-49E0-A439-98C063FA1F71}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1A7945C3-FCF2-49E0-A439-98C063FA1F71}.Debug|x64.Build.0 = Debug|Any CPU
 		{1A7945C3-FCF2-49E0-A439-98C063FA1F71}.Release|x64.ActiveCfg = Release|x64
 		{1A7945C3-FCF2-49E0-A439-98C063FA1F71}.Release|x64.Build.0 = Release|x64
-		{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}.Debug|x64.ActiveCfg = Debug|x64
-		{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}.Debug|x64.Build.0 = Debug|x64
+		{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}.Debug|x64.Build.0 = Debug|Any CPU
 		{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}.Release|x64.ActiveCfg = Release|x64
 		{E4CB76D8-6462-4B75-BEEF-187084FE9FD3}.Release|x64.Build.0 = Release|x64
-		{B8C808D4-46A5-4DE5-8C33-761133BE86DB}.Debug|x64.ActiveCfg = Debug|x64
-		{B8C808D4-46A5-4DE5-8C33-761133BE86DB}.Debug|x64.Build.0 = Debug|x64
+		{B8C808D4-46A5-4DE5-8C33-761133BE86DB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B8C808D4-46A5-4DE5-8C33-761133BE86DB}.Debug|x64.Build.0 = Debug|Any CPU
 		{B8C808D4-46A5-4DE5-8C33-761133BE86DB}.Release|x64.ActiveCfg = Release|x64
 		{B8C808D4-46A5-4DE5-8C33-761133BE86DB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection

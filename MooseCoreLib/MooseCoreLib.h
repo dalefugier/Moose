@@ -91,3 +91,6 @@ int ON_Brep_VertexCount(const ON_Brep* pConstBrep);
 
 MOOSECORELIB_C_FUNCTION
 bool ON_NurbsCurve_Inspect(const ON_NurbsCurve* pConstCurve, int* pPointCount, int* pKnotCount);
+
+MOOSECORELIB_C_FUNCTION
+ON_Mesh* MooseCreateMesh();

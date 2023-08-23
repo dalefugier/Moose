@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Rhino.Geometry;
 using Rhino.Runtime;
 
@@ -203,6 +204,20 @@ namespace MooseCommon
       // Get the native ON_NurbsCurve pointer
       var const_ptr_curve = Interop.NativeGeometryConstPointer(curve);
       return UnsafeNativeMethods.ON_NurbsCurve_Inspect(const_ptr_curve, ref pointCount, ref knotCount);
+    }
+
+    /// <summary>
+    /// Creates a mesh.
+    /// </summary>
+    /// <returns>The mesh if successfull, null on failure.</returns>
+    public static Mesh CreateMesh()
+    {
+      var ptr = UnsafeNativeMethods.MooseCreateMesh();
+      if (ptr == IntPtr.Zero)
+        return null;
+
+      var geometry = Interop.CreateFromNativePointer(ptr);
+      return geometry as Mesh;
     }
   }
 }

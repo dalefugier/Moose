@@ -82,9 +82,14 @@ namespace MooseNet
       //foreach (var pt in points)
       //  doc.Objects.AddPoint(pt);
 
-      var curves = MooseCommon.Utility.ExampleGetCurves();
-      foreach (var curve in curves)
-        doc.Objects.Add(curve);
+      //var curves = MooseCommon.Utility.ExampleGetCurves();
+      //foreach (var curve in curves)
+      //  doc.Objects.Add(curve);
+
+      var mesh = MooseCommon.Utility.CreateMesh();
+      if (null != mesh)
+        doc.Objects.AddMesh(mesh);
+
       doc.Views.Redraw();
 
       return Result.Success;

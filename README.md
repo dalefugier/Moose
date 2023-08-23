@@ -22,7 +22,7 @@ To build the sample, you are going to need:
 
 Legal Stuff
 -----------
-Copyright © 2012-2022 Robert McNeel & Associates. All Rights Reserved.
+Copyright © 2012-2023 Robert McNeel & Associates. All Rights Reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

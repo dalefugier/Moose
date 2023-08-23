@@ -52,6 +52,12 @@ namespace MooseCommon
     public static extern int MoooseGetPolylines(IntPtr pArray);
 
     /// <summary>
+    /// Creaes a mesh
+    /// </summary>
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern IntPtr MooseCreateMesh();
+
+    /// <summary>
     /// Demonstrates getting an array of curves.
     /// </summary>
     [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]

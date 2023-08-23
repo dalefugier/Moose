@@ -217,10 +217,10 @@ MOOSECORELIB_C_FUNCTION void ON_PolylineArray_Delete(ON_SimpleArray<ON_Polyline*
   }
 }
 
-MOOSECORELIB_C_FUNCTION 
+MOOSECORELIB_C_FUNCTION
 bool ON_MeshTree_IntersectLine(
-  const ON_Mesh* pMesh, 
-  const ON_Line* pLine, 
+  const ON_Mesh* pMesh,
+  const ON_Line* pLine,
   ON_3dPointArray* pPoints
 )
 {
@@ -271,4 +271,62 @@ bool ON_NurbsCurve_Inspect(
     rc = true;
   }
   return rc;
+}
+
+MOOSECORELIB_C_FUNCTION
+ON_Mesh* MooseCreateMesh()
+{
+  const int vertex_count = 12;
+  const int face_count = 30;
+
+  ON_Mesh* mesh = new ON_Mesh(vertex_count, face_count, false, false);
+
+  const double c = (1 + sqrt(5)) / 4;
+
+  int vi = 0;
+  mesh->SetVertex(vi++, ON_3dPoint(0.5, 0.0, c));
+  mesh->SetVertex(vi++, ON_3dPoint(0.5, 0.0, -c));
+  mesh->SetVertex(vi++, ON_3dPoint(-0.5, 0.0, c));
+  mesh->SetVertex(vi++, ON_3dPoint(-0.5, 0.0, -c));
+  mesh->SetVertex(vi++, ON_3dPoint(c, 0.5, 0.0));
+  mesh->SetVertex(vi++, ON_3dPoint(c, -0.5, 0.0));
+  mesh->SetVertex(vi++, ON_3dPoint(-c, 0.5, 0.0));
+  mesh->SetVertex(vi++, ON_3dPoint(-c, -0.5, 0.0));
+  mesh->SetVertex(vi++, ON_3dPoint(0.0, c, 0.5));
+  mesh->SetVertex(vi++, ON_3dPoint(0.0, c, -0.5));
+  mesh->SetVertex(vi++, ON_3dPoint(0.0, -c, 0.5));
+  mesh->SetVertex(vi++, ON_3dPoint(0.0, -c, -0.5));
+
+  int fi = 0;
+  mesh->SetTriangle(fi++, 0, 2, 10);
+  mesh->SetTriangle(fi++, 0, 10, 5);
+  mesh->SetTriangle(fi++, 0, 5, 4);
+  mesh->SetTriangle(fi++, 0, 4, 8);
+  mesh->SetTriangle(fi++, 0, 8, 2);
+  mesh->SetTriangle(fi++, 3, 1, 11);
+  mesh->SetTriangle(fi++, 3, 11, 7);
+  mesh->SetTriangle(fi++, 3, 7, 6);
+  mesh->SetTriangle(fi++, 3, 6, 9);
+  mesh->SetTriangle(fi++, 3, 9, 1);
+  mesh->SetTriangle(fi++, 2, 6, 7);
+  mesh->SetTriangle(fi++, 2, 7, 10);
+  mesh->SetTriangle(fi++, 10, 7, 11);
+  mesh->SetTriangle(fi++, 10, 11, 5);
+  mesh->SetTriangle(fi++, 5, 11, 1);
+  mesh->SetTriangle(fi++, 5, 1, 4);
+  mesh->SetTriangle(fi++, 4, 1, 9);
+  mesh->SetTriangle(fi++, 4, 9, 8);
+  mesh->SetTriangle(fi++, 8, 9, 6);
+  mesh->SetTriangle(fi++, 8, 6, 2);
+
+  mesh->ComputeVertexNormals();
+  mesh->Compact();
+
+  if (!mesh->IsValid())
+  {
+    delete mesh;
+    mesh = nullptr;
+  }
+
+  return mesh;
 }

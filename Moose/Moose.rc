@@ -68,8 +68,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 6,0,0,0
- PRODUCTVERSION 6,0,0,0
+ FILEVERSION 7,0,0,0
+ PRODUCTVERSION 7,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -85,13 +85,13 @@ BEGIN
         BLOCK "00000409"
         BEGIN
             VALUE "CompanyName", "Robert McNeel & Associates"
-            VALUE "FileDescription", "Moose plug-in for Rhinoceros®"
-            VALUE "FileVersion", "6.0.0.0"
+            VALUE "FileDescription", "Moose plug-in for Rhinoceros"
+            VALUE "FileVersion", "7.0.0.0"
             VALUE "InternalName", "Moose.rhp"
-            VALUE "LegalCopyright", "Copyright © 2012-18, Robert McNeel & Associates"
+            VALUE "LegalCopyright", "Copyright © 2012-23, Robert McNeel & Associates"
             VALUE "OriginalFilename", "Moose.rhp"
             VALUE "ProductName", "Moose"
-            VALUE "ProductVersion", "6.0.0.0"
+            VALUE "ProductVersion", "7.0.0.0"
         END
     END
     BLOCK "VarFileInfo"
