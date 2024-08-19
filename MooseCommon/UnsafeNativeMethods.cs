@@ -58,10 +58,13 @@ namespace MooseCommon
     public static extern IntPtr MooseCreateMesh();
 
     /// <summary>
-    /// Demonstrates getting an array of curves.
+    /// Demonstrates getting and setting an array of curves.
     /// </summary>
     [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
     public static extern int MooseGetCurves(IntPtr pCurveArray);
+
+    [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
+    public static extern int MooseSetCurves(IntPtr pCurveArray);
 
     #region SimpleArrayPolyline helpers
 

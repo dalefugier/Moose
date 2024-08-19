@@ -72,6 +72,9 @@ MOOSECORELIB_C_FUNCTION
 int MooseGetCurves(ON_SimpleArray<ON_Curve*>* pCurveArray);
 
 MOOSECORELIB_C_FUNCTION
+int MooseSetCurves(const ON_SimpleArray<const ON_Curve*>* pCurveArray);
+
+MOOSECORELIB_C_FUNCTION
 ON_SimpleArray<ON_Polyline*>* ON_PolylineArray_New();
 
 MOOSECORELIB_C_FUNCTION

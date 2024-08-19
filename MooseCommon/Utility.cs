@@ -151,6 +151,18 @@ namespace MooseCommon
     }
 
     /// <summary>
+    /// Demonstrates setting a bunch of curves to C++.
+    /// </summary>
+    public static int ExampleSetCurves(IEnumerable<Curve> curves)
+    {
+      using (var curve_array = new Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer(curves))
+      {
+        var ptr_curve_array = curve_array.ConstPointer();
+        return UnsafeNativeMethods.MooseSetCurves(ptr_curve_array);
+      }
+    }
+
+    /// <summary>
     /// Intersects a line with a mesh.
     /// </summary>
     /// <param name="mesh">The mesh.</param>

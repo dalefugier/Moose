@@ -173,6 +173,13 @@ MOOSECORELIB_C_FUNCTION int MooseGetCurves(ON_SimpleArray<ON_Curve*>* pCurveArra
   return rc;
 }
 
+MOOSECORELIB_C_FUNCTION int MooseSetCurves(const ON_SimpleArray<const ON_Curve*>* pCurveArray)
+{
+  int rc = 0;
+  if (pCurveArray)
+    rc = pCurveArray->Count();
+  return rc;
+}
 
 MOOSECORELIB_C_FUNCTION ON_SimpleArray<ON_Polyline*>* ON_PolylineArray_New()
 {
