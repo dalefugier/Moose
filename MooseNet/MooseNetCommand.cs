@@ -1,8 +1,6 @@
-﻿using System;
-using Rhino;
+﻿using Rhino;
 using Rhino.Commands;
 using Rhino.Geometry;
-using Rhino.Input.Custom;
 
 namespace MooseNet
 {
@@ -86,7 +84,7 @@ namespace MooseNet
       //foreach (var curve in curves)
       //  doc.Objects.Add(curve);
 
-      var mesh = MooseCommon.Utility.CreateMesh();
+      Mesh mesh = MooseCommon.Utility.CreateMesh();
       if (null != mesh)
         doc.Objects.AddMesh(mesh);
 

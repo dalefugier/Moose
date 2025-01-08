@@ -1,6 +1,6 @@
-﻿using System.Reflection;
+﻿using Rhino.PlugIns;
+using System.Reflection;
 using System.Runtime.InteropServices;
-using Rhino.PlugIns;
 
 // Plug-in Description Attributes - all of these are optional.
 // These will show in Rhino's option dialog, in the tab Plug-ins.
@@ -23,4 +23,4 @@ using Rhino.PlugIns;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM.
 // This will also be the Guid of the Rhino plug-in.
-[assembly: Guid("e4cb76d8-6462-4b75-beef-187084fe9fd3")] 
+[assembly: Guid("e4cb76d8-6462-4b75-beef-187084fe9fd3")]

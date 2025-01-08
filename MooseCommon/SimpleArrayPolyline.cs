@@ -1,5 +1,5 @@
-﻿using System;
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
+using System;
 
 namespace MooseCommon
 {
@@ -39,9 +39,9 @@ namespace MooseCommon
       if (index < 0 || index >= Count)
         return null;
 
-      var points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d();
-      var ptr_points_array = points_array.NonConstPointer();
-      var cnt = UnsafeNativeMethods.ON_PolylineArray_Get(m_ptr, index, ptr_points_array);
+      Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d();
+      IntPtr ptr_points_array = points_array.NonConstPointer();
+      int cnt = UnsafeNativeMethods.ON_PolylineArray_Get(m_ptr, index, ptr_points_array);
 
       Polyline rc = null;
       if (cnt > 0)

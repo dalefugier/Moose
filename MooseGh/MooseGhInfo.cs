@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Grasshopper.Kernel;
+using System;
 using System.Drawing;
 using System.Reflection;
-using Grasshopper.Kernel;
 
 namespace MooseGh
 {
@@ -14,9 +14,9 @@ namespace MooseGh
       get
       {
         const string resource = "MooseGh.Resources.MooseGh.ico";
-        var size = new Size(24, 24);
-        var assembly = Assembly.GetExecutingAssembly();
-        var icon = Rhino.UI.DrawingUtilities.IconFromResource(resource, size, assembly);
+        Size size = new Size(24, 24);
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        Icon icon = Rhino.UI.DrawingUtilities.IconFromResource(resource, size, assembly);
         return icon.ToBitmap();
       }
     }

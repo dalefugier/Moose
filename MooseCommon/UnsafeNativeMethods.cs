@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Rhino.Geometry;
+using System;
 using System.Runtime.InteropServices;
-using Rhino.Geometry;
 
 namespace MooseCommon
 {
@@ -13,7 +13,7 @@ namespace MooseCommon
     /// Prints a message to the Rhino command line.
     /// </summary>
     [DllImport("MooseCoreLib.dll", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void MoosePrint([MarshalAs(UnmanagedType.LPWStr)]string str);
+    public static extern void MoosePrint([MarshalAs(UnmanagedType.LPWStr)] string str);
 
     /// <summary>
     /// Sums two numbers

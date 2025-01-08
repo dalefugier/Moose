@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using Rhino.Runtime;
+using System;
+using System.Collections.Generic;
 
 namespace MooseCommon
 {
@@ -41,19 +40,19 @@ namespace MooseCommon
         throw new ArgumentNullException(nameof(brep));
 
       // Get the native ON_Brep pointer
-      var const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
+      IntPtr const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
 
       // Creates a ON_3dPointArray wrapper class instance
-      var points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d();
+      Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d();
       // Get a non-const point to this class
-      var ptr_points_array = points_array.NonConstPointer();
+      IntPtr ptr_points_array = points_array.NonConstPointer();
 
       // Creates a ON_SimpleArray<ON_Line> wrapper class instance
-      var lines_array = new Rhino.Runtime.InteropWrappers.SimpleArrayLine();
+      Rhino.Runtime.InteropWrappers.SimpleArrayLine lines_array = new Rhino.Runtime.InteropWrappers.SimpleArrayLine();
       // Get a non-const point to this class
-      var ptr_lines_array = lines_array.NonConstPointer();
+      IntPtr ptr_lines_array = lines_array.NonConstPointer();
 
-      var rc = UnsafeNativeMethods.MooseFunction(const_ptr_brep, x, y, ptr_points_array, ptr_lines_array);
+      int rc = UnsafeNativeMethods.MooseFunction(const_ptr_brep, x, y, ptr_points_array, ptr_lines_array);
       if (rc > 0)
       {
         points = points_array.ToArray();
@@ -80,17 +79,17 @@ namespace MooseCommon
         throw new ArgumentNullException(nameof(brep));
 
       // Get the native ON_Brep pointer
-      var const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
+      IntPtr const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
 
-      var pts = new List<Point3d>(points);
-      var ptarray = pts.ToArray();
+      List<Point3d> pts = new List<Point3d>(points);
+      Point3d[] ptarray = pts.ToArray();
 
       // Creates a ON_SimpleArray<ON_Line> wrapper class instance
-      var lines_array = new Rhino.Runtime.InteropWrappers.SimpleArrayLine();
+      Rhino.Runtime.InteropWrappers.SimpleArrayLine lines_array = new Rhino.Runtime.InteropWrappers.SimpleArrayLine();
       // Get a non-const point to this class
-      var ptr_lines_array = lines_array.NonConstPointer();
+      IntPtr ptr_lines_array = lines_array.NonConstPointer();
 
-      var rc = UnsafeNativeMethods.MooseFunction2(const_ptr_brep, x, y, ptarray.Length, ptarray, ptr_lines_array);
+      int rc = UnsafeNativeMethods.MooseFunction2(const_ptr_brep, x, y, ptarray.Length, ptarray, ptr_lines_array);
       lines = rc > 0 ? lines_array.ToArray() : new Line[0];
       lines_array.Dispose();
 
@@ -102,11 +101,11 @@ namespace MooseCommon
     /// </summary>
     public static Brep ExampleFunction3()
     {
-      var ptr = UnsafeNativeMethods.MooseFunction3();
+      IntPtr ptr = UnsafeNativeMethods.MooseFunction3();
       if (ptr == IntPtr.Zero)
         return null;
 
-      var geometry = Interop.CreateFromNativePointer(ptr);
+      GeometryBase geometry = Interop.CreateFromNativePointer(ptr);
       return geometry as Brep;
     }
 
@@ -115,18 +114,18 @@ namespace MooseCommon
     /// </summary>
     public static Polyline[] ExampleGetPolylines()
     {
-      var array = new SimpleArrayPolyline();
-      var ptr_array = array.NonConstPointer();
+      SimpleArrayPolyline array = new SimpleArrayPolyline();
+      IntPtr ptr_array = array.NonConstPointer();
 
-      var count = UnsafeNativeMethods.MoooseGetPolylines(ptr_array);
+      int count = UnsafeNativeMethods.MoooseGetPolylines(ptr_array);
       if (count == 0)
       {
         array.Dispose();
         return new Polyline[0];
       }
 
-      var list = new List<Polyline>(count);
-      for (var i = 0; i < count; i++)
+      List<Polyline> list = new List<Polyline>(count);
+      for (int i = 0; i < count; i++)
         list.Add(array.Get(i));
 
       array.Dispose();
@@ -139,11 +138,11 @@ namespace MooseCommon
     /// </summary>
     public static Curve[] ExampleGetCurves()
     {
-      using (var curves = new Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer())
+      using (Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer curves = new Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer())
       {
-        var ptr_curves = curves.NonConstPointer();
-        var count = UnsafeNativeMethods.MooseGetCurves(ptr_curves);
-        var rc = (count == 0)
+        IntPtr ptr_curves = curves.NonConstPointer();
+        int count = UnsafeNativeMethods.MooseGetCurves(ptr_curves);
+        Curve[] rc = (count == 0)
           ? new Curve[0]
           : curves.ToNonConstArray();
         return rc;
@@ -155,9 +154,9 @@ namespace MooseCommon
     /// </summary>
     public static int ExampleSetCurves(IEnumerable<Curve> curves)
     {
-      using (var curve_array = new Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer(curves))
+      using (Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer curve_array = new Rhino.Runtime.InteropWrappers.SimpleArrayCurvePointer(curves))
       {
-        var ptr_curve_array = curve_array.ConstPointer();
+        IntPtr ptr_curve_array = curve_array.ConstPointer();
         return UnsafeNativeMethods.MooseSetCurves(ptr_curve_array);
       }
     }
@@ -178,11 +177,11 @@ namespace MooseCommon
       if (null == line)
         throw new ArgumentNullException(nameof(mesh));
 
-      using (var points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d())
+      using (Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d())
       {
-        var ptr_points = points_array.NonConstPointer();
-        var ptr_const_mesh = Interop.NativeGeometryConstPointer(mesh);
-        var rc = UnsafeNativeMethods.ON_MeshTree_IntersectLine(ptr_const_mesh, ref line, ptr_points);
+        IntPtr ptr_points = points_array.NonConstPointer();
+        IntPtr ptr_const_mesh = Interop.NativeGeometryConstPointer(mesh);
+        bool rc = UnsafeNativeMethods.ON_MeshTree_IntersectLine(ptr_const_mesh, ref line, ptr_points);
         if (rc)
           return points_array.ToArray();
       }
@@ -198,7 +197,7 @@ namespace MooseCommon
         throw new ArgumentNullException(nameof(brep));
 
       // Get the native ON_Brep pointer
-      var const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
+      IntPtr const_ptr_brep = Interop.NativeGeometryConstPointer(brep);
       return UnsafeNativeMethods.ON_Brep_VertexCount(const_ptr_brep);
     }
 
@@ -214,7 +213,7 @@ namespace MooseCommon
         throw new ArgumentNullException(nameof(curve));
 
       // Get the native ON_NurbsCurve pointer
-      var const_ptr_curve = Interop.NativeGeometryConstPointer(curve);
+      IntPtr const_ptr_curve = Interop.NativeGeometryConstPointer(curve);
       return UnsafeNativeMethods.ON_NurbsCurve_Inspect(const_ptr_curve, ref pointCount, ref knotCount);
     }
 
@@ -224,11 +223,11 @@ namespace MooseCommon
     /// <returns>The mesh if successfull, null on failure.</returns>
     public static Mesh CreateMesh()
     {
-      var ptr = UnsafeNativeMethods.MooseCreateMesh();
+      IntPtr ptr = UnsafeNativeMethods.MooseCreateMesh();
       if (ptr == IntPtr.Zero)
         return null;
 
-      var geometry = Interop.CreateFromNativePointer(ptr);
+      GeometryBase geometry = Interop.CreateFromNativePointer(ptr);
       return geometry as Mesh;
     }
   }

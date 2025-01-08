@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Grasshopper.Kernel;
+using Rhino;
+using System;
 using System.Drawing;
 using System.Reflection;
-using Grasshopper.Kernel;
-using Rhino;
 
 // In order to load the result of this wizard, you will also need to
 // add the output bin/ folder of this project to the list of loaded
@@ -49,7 +49,7 @@ namespace MooseGh
     /// </summary>
     protected override void SolveInstance(IGH_DataAccess data)
     {
-      var x = 0.0;
+      double x = 0.0;
       if (!data.GetData(0, ref x))
         return;
 
@@ -59,7 +59,7 @@ namespace MooseGh
         return;
       }
 
-      var y = 0.0;
+      double y = 0.0;
       if (!data.GetData(1, ref y))
         return;
 
@@ -69,7 +69,7 @@ namespace MooseGh
         return;
       }
 
-      var sum = MooseCommon.Utility.Sum(x, y);
+      double sum = MooseCommon.Utility.Sum(x, y);
 
       data.SetData(0, sum);
     }
@@ -81,9 +81,9 @@ namespace MooseGh
       get
       {
         const string resource = "MooseGh.Resources.Add.ico";
-        var size = new Size(24, 24);
-        var assembly = Assembly.GetExecutingAssembly();
-        var icon = Rhino.UI.DrawingUtilities.IconFromResource(resource, size, assembly);
+        Size size = new Size(24, 24);
+        Assembly assembly = Assembly.GetExecutingAssembly();
+        Icon icon = Rhino.UI.DrawingUtilities.IconFromResource(resource, size, assembly);
         return icon.ToBitmap();
       }
     }
