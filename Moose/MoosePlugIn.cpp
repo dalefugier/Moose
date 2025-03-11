@@ -42,11 +42,11 @@ RHINO_PLUG_IN_ICON_RESOURCE_ID(IDI_ICON);
 // your company information. Note, all of these declarations
 // must be present or your plug-in will not load.
 RHINO_PLUG_IN_DEVELOPER_ORGANIZATION(L"Robert McNeel & Associates");
-RHINO_PLUG_IN_DEVELOPER_ADDRESS(L"3670 Woodland Park Avenue North\015\012Seattle WA 98103");
+RHINO_PLUG_IN_DEVELOPER_ADDRESS(L"146 North Canal Street, Suite 320\015\012Seattle WA 98103");
 RHINO_PLUG_IN_DEVELOPER_COUNTRY(L"United States");
 RHINO_PLUG_IN_DEVELOPER_PHONE(L"206-545-6877");
 RHINO_PLUG_IN_DEVELOPER_FAX(L"206-545-7321");
-RHINO_PLUG_IN_DEVELOPER_EMAIL(L"tech@mcneel.com");
+RHINO_PLUG_IN_DEVELOPER_EMAIL(L"devsupport@mcneel.com");
 RHINO_PLUG_IN_DEVELOPER_WEBSITE(L"http://www.rhino3d.com");
 RHINO_PLUG_IN_UPDATE_URL(L"https://github.com/dalefugier/Moose");
 

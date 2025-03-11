@@ -174,8 +174,6 @@ namespace MooseCommon
     {
       if (null == mesh)
         throw new ArgumentNullException(nameof(mesh));
-      if (null == line)
-        throw new ArgumentNullException(nameof(mesh));
 
       using (Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d points_array = new Rhino.Runtime.InteropWrappers.SimpleArrayPoint3d())
       {
